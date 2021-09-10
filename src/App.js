@@ -32,18 +32,18 @@ const App = (props) => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = pageNumber => setCurrentPage(pageNumber);
   function prepareData(){
     console.log(data);
     let result = data;
     if (searchWord){
-      result = result.filter(post => post.firstName.includes(searchWord));
+      result = result.filter(post => post.firstName.toLowerCase().includes(searchWord));
     }
     if (selectValue){
       result = selectValue !== 'none' && result.filter(post => post.adress.state === selectValue);
     }
     if (tableSort){
-      result = _.orderBy(result, [tableSort],['asc']).slice(indexOfFirstPost, indexOfLastPost);
+      result = _.orderBy(result, [tableSort],['asc']);
     };
     return result.slice(indexOfFirstPost, indexOfLastPost);
   }

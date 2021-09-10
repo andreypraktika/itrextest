@@ -5,7 +5,7 @@ import "../App.css";
 
 function Search(props){
     const handleChange = e => {
-        props.setSearchWord(e.target.value);
+        props.setSearchWord(e.target.value.toLowerCase());
     }
     return (
         <input type="text" placeholder="Search by name" onChange={handleChange}/>
