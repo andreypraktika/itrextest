@@ -2,19 +2,25 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.title {
+  color: 	#808080;
+  margin-left: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+input[type=text] {
+width: 25%;
+height: 25px;
+}
+
+input[type=text]:focus {
+  border: 3px solid #555;
+}
+.header {
+  margin-left: 2rem;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #8b8b8b;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,6 +34,96 @@
   color: #61dafb;
 }
 
+.table {
+  margin-top: 2rem;
+  margin-left: 2rem;
+	width: 65%;
+	border: none;
+	margin-bottom: 20px;
+}
+.table thead th {
+	font-weight: bold;
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	background: #d8d8d8;
+	font-size: 14px;
+}
+.table thead th:hover {
+	/* background: black;
+  color: #d8d8d8 */
+	background: darkgray;
+  color: white;
+}
+.table thead tr th:first-child {
+	border-radius: 8px 0 0 8px;
+}
+
+.table thead tr th:last-child {
+	border-radius: 0 8px 8px 0;
+}
+.table tbody td {
+	text-align: left;
+	border: none;
+	padding: 10px 15px;
+	font-size: 14px;
+	vertical-align: top;
+}
+.table tbody tr:nth-child(even){
+	background: #f3f3f3;
+}
+.table tbody tr:hover{
+  background: #838383;
+  color: white;
+}
+.table tbody tr:nth-child(even):hover{
+	background: #838383;
+  color: white;
+}
+.table tbody tr td:first-child {
+	border-radius: 8px 0 0 8px;
+}
+.table tbody tr td:last-child {
+	border-radius: 0 8px 8px 0;
+}
+nav {
+  display: flex;
+  justify-content: center;
+}
+      
+.pagination {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+      
+.pagination li {
+  margin: 0 1px;
+}
+
+.info {
+  margin-top: 2rem;
+  background: #d8d8d8;
+  border-bottom: 1px solid #d8d8d8;
+  color: #2B2D2F;
+  margin-left: 2rem;
+  text-align: center;
+  padding-top: 5px;
+  width: 65%;
+  height: 30%;
+  border-radius: 8px 8px 8px 8px;
+  font-size: 14px;
+  margin-bottom: 2rem;
+}
+
+select {
+  margin-left: 1rem;
+  margin-top: 1rem;
+  width: 25%;
+  height: 31px;
+}
+  
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
