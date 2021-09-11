@@ -3,7 +3,7 @@ import actionTypes from './types';
 const initialState = {
   data: [],
   loading: false,
-  active: {},
+  active: null,
   selectValue: null,
   searchWord: '',
 };

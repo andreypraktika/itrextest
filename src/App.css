@@ -8,15 +8,22 @@
 }
 
 input[type=text] {
-width: 25%;
-height: 25px;
+  width: 25%;
+  height: 31px;
 }
 
-input[type=text]:focus {
-  border: 3px solid #555;
+input[type=text]:hover {
+  border: 1.75px solid #555;
+}
+input[type=text]:active {
+  border: 2px solid #555;
 }
 .header {
+  padding-top: 2rem;
+  width: 65%;
   margin-left: 2rem;
+  display: flex;
+  justify-content: space-between;
 }
 
 .App-header {
@@ -104,24 +111,24 @@ nav {
 
 .info {
   margin-top: 2rem;
-  background: #d8d8d8;
-  border-bottom: 1px solid #d8d8d8;
+  background: white;
   color: #2B2D2F;
+  border-bottom: 1px solid #d8d8d8;
+  border-top: 1px solid #d8d8d8;
   margin-left: 2rem;
-  text-align: center;
   padding-top: 5px;
   width: 65%;
   height: 30%;
   border-radius: 8px 8px 8px 8px;
-  font-size: 14px;
+  font-size: 18px;
   margin-bottom: 2rem;
+  display: flex;
+  justify-content: left;
 }
 
 select {
-  margin-left: 1rem;
-  margin-top: 1rem;
-  width: 25%;
-  height: 31px;
+  width: 15%;
+  height: 40px;
 }
   
 @keyframes App-logo-spin {

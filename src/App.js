@@ -9,6 +9,7 @@ import "./App.css";
 import "./loader.css";
 import { setData, setLoading } from "./Redux/redux-reducers";
 import Select from "./components/Select";
+import { result } from "lodash";
 
 const App = (props) => {
   const { data, loading, searchWord, selectValue} = props;
@@ -35,13 +36,12 @@ const App = (props) => {
   function prepareData(){
     let result = data;
     if (searchWord){
-      result = result.filter(post => post.firstName.toLowerCase().includes(searchWord));
+      result = result.filter(post => post.firstName.toLowerCase().includes(searchWord) || post.lastName.toLowerCase().includes(searchWord));
     }
     if (selectValue){
       result = selectValue !== 'none' && result.filter(post => post.adress.state === selectValue);
     }
-
-    return result.slice(indexOfFirstPost, indexOfLastPost);
+    return result;
   }
   console.log(prepareData());
 
@@ -52,10 +52,10 @@ const App = (props) => {
          <Search />
          <Select />
       </div>
-      <Posts posts={prepareData()} />
+      <Posts posts={prepareData().slice(indexOfFirstPost, indexOfLastPost)} />
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={data.length}
+        totalPosts={prepareData().length}
         paginate={paginate}
       />
       <InfoPanel />
