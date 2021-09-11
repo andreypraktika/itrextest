@@ -88,6 +88,7 @@ const mapStateToProps = state => ({
   data: state.data,
   loading: state.loading,
   active: state.active,
+  currentPage: state.currentPage,
 });
 
 export default connect(mapStateToProps, { setActive })(Posts);

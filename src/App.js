@@ -7,13 +7,11 @@ import Search from "./components/Search";
 import { connect } from "react-redux";
 import "./App.css";
 import "./loader.css";
-import { setData, setLoading } from "./Redux/redux-reducers";
+import { setData, setLoading, setCurrentPage } from "./Redux/redux-reducers";
 import Select from "./components/Select";
-import { result } from "lodash";
 
 const App = (props) => {
-  const { data, loading, searchWord, selectValue} = props;
-  const [currentPage, setCurrentPage] = useState(1);
+  const { data, loading, searchWord, selectValue, currentPage } = props;
   const [postsPerPage] = useState(20);
 
   useEffect(() => {
@@ -32,13 +30,15 @@ const App = (props) => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = pageNumber => props.setCurrentPage(pageNumber);
   function prepareData(){
     let result = data;
     if (searchWord){
+      props.setCurrentPage(1);
       result = result.filter(post => post.firstName.toLowerCase().includes(searchWord) || post.lastName.toLowerCase().includes(searchWord));
     }
     if (selectValue){
+      props.setCurrentPage(1);
       result = selectValue !== 'none' && result.filter(post => post.adress.state === selectValue);
     }
     return result;
@@ -68,6 +68,7 @@ const mapStateToProps = (state) => ({
   loading: state.loading,
   searchWord: state.searchWord,
   selectValue: state.selectValue,
+  currentPage: state.currentPage,
 });
 
-export default connect(mapStateToProps, { setData, setLoading })(App);
+export default connect(mapStateToProps, { setData, setLoading, setCurrentPage })(App);
