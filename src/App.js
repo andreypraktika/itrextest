@@ -9,10 +9,9 @@ import "./App.css";
 import "./loader.css";
 import { setData, setLoading } from "./Redux/redux-reducers";
 import Select from "./components/Select";
-import _ from 'lodash';
 
 const App = (props) => {
-  const { data, loading, searchWord, selectValue, tableSort } = props;
+  const { data, loading, searchWord, selectValue} = props;
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(20);
 
@@ -42,9 +41,7 @@ const App = (props) => {
     if (selectValue){
       result = selectValue !== 'none' && result.filter(post => post.adress.state === selectValue);
     }
-    if (tableSort){
-      result = _.orderBy(result, [tableSort],['asc']);
-    };
+
     return result.slice(indexOfFirstPost, indexOfLastPost);
   }
   console.log(prepareData());
@@ -72,7 +69,6 @@ const mapStateToProps = (state) => ({
   loading: state.loading,
   searchWord: state.searchWord,
   selectValue: state.selectValue,
-  tableSort: state.tableSort,
 });
 
 export default connect(mapStateToProps, { setData, setLoading })(App);

@@ -6,7 +6,6 @@ const initialState = {
   active: {},
   selectValue: null,
   searchWord: '',
-  tableSort: '',
 };
 
 export const preproccessReducer = (state = initialState, action) => {
@@ -41,12 +40,6 @@ export const preproccessReducer = (state = initialState, action) => {
         selectValue: action.payload,
       }
     }
-    case actionTypes.SET_TABLE_SORT: {
-      return {
-        ...state,
-        tableSort: action.payload,
-      }
-    }
     
     default: {
       return state;
@@ -59,4 +52,3 @@ export const setLoading = value => ({ type: actionTypes.SET_LOADING, payload: va
 export const setActive = value => ({ type: actionTypes.SET_ACTIVE, payload: value });
 export const setSearchWord = value => ({ type: actionTypes.SET_SEARCH_WORD, payload: value });
 export const setSelectValue = value => ({ type: actionTypes.SET_SELECT_VALUE, payload: value });
-export const setTableSort = value => ({ type: actionTypes.SET_TABLE_SORT, payload: value });

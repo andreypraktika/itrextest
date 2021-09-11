@@ -4,7 +4,6 @@ const actionTypes = {
   SET_ACTIVE: 'SET_ACTIVE',
   SET_SEARCH_WORD: 'SET_SEARCH_WORD',
   SET_SELECT_VALUE: 'SET_SELECT_VALUE',
-  SET_TABLE_SORT: 'SET_TABLE_SORT',
 };
 
 export default actionTypes;
