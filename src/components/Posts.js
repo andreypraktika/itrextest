@@ -8,7 +8,6 @@ const Posts = (props) => {
 
   function handleClick(id){
     props.setActive(posts.filter(post => post.id === id)[0]);
-    console.log(active);
   }
 
   const columns = useMemo(
@@ -40,7 +39,7 @@ const Posts = (props) => {
     ],
     []
   )
-  const tableInstance = useTable({columns,data}, useSortBy);
+  const tableInstance = useTable({columns, data: posts, initialData: data}, useSortBy);
 
   const {
     getTableProps,
@@ -64,20 +63,15 @@ const Posts = (props) => {
         </tr>
       ))}
       </thead>
-     <tbody {...getTableBodyProps()}>
-       {// Loop over the table rows
-       rows.map(row => {
-         // Prepare the row for display
+     <tbody {...getTableBodyProps()} >
+       {rows.map(row => {
          prepareRow(row)
          return (
-           // Apply the row props
-           <tr {...row.getRowProps()}>
-             {// Loop over the rows cells
-             row.cells.map(cell => {
-               // Apply the cell props
+           <tr {...row.getRowProps()} onClick={() => handleClick(row.values.id)}>
+             {row.cells.map(cell => {
                return (
                  <td {...cell.getCellProps()}>
-                   {// Render the cell contents
+                   {
                    cell.render('Cell')}
                  </td>
                )

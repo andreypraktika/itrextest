@@ -19,7 +19,7 @@ const App = (props) => {
     const fetchPosts = async () => {
       props.setLoading(true);
       const res = await axios.get(
-        "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&adress={addressObject}&description={lorem|32}"
+        "https://itrex-react-lab-files.s3.eu-central-1.amazonaws.com/react-test-api.json"
       );
       props.setData(res.data);
       props.setLoading(false);
@@ -33,7 +33,6 @@ const App = (props) => {
 
   const paginate = pageNumber => setCurrentPage(pageNumber);
   function prepareData(){
-    console.log(data);
     let result = data;
     if (searchWord){
       result = result.filter(post => post.firstName.toLowerCase().includes(searchWord));
