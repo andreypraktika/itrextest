@@ -93,6 +93,11 @@ input[type=text]:active {
 .table tbody tr td:last-child {
 	border-radius: 0 8px 8px 0;
 }
+.table tbody tr td #active {
+  background: #838383;
+  color: white;
+}
+
 nav {
   display: flex;
   justify-content: center;
@@ -110,11 +115,10 @@ nav {
 }
 
 .info {
-  margin-top: 2rem;
-  background: white;
+  background: #FAFAFA;
   color: #2B2D2F;
-  border-bottom: 1px solid #d8d8d8;
-  border-top: 1px solid #d8d8d8;
+  border-bottom: 1px solid #d8d8d8; 
+  border-right: 1px solid #d8d8d8; 
   margin-left: 2rem;
   padding-top: 5px;
   width: 65%;
@@ -126,9 +130,11 @@ nav {
   justify-content: left;
 }
 
+
 select {
   width: 15%;
   height: 40px;
+  color: gray;
 }
   
 @keyframes App-logo-spin {
