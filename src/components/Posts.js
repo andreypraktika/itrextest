@@ -67,7 +67,9 @@ const Posts = (props) => {
        {rows.map(row => {
          prepareRow(row)
          return (
-           <tr {...row.getRowProps()} onClick={() => handleClick(row.values.id)}>
+           <tr {...row.getRowProps()} onClick={() => {
+             handleClick(row.values.id);
+             }}>
              {row.cells.map(cell => {
                return (
                  <td {...cell.getCellProps()}>
