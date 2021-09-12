@@ -30,7 +30,7 @@ const Pagination = (props) => {
           </li>
         ))}
         <li>
-        <a hidden={ currentPage === lastPage && true} onClick={() => {
+        <a hidden={ currentPage === lastPage || lastPage === 1 || lastPage === 0 && true} onClick={() => {
           props.setCurrentPage(currentPage + 1)
           }} href='!#' className='page-link' >Next</a>
         </li>
