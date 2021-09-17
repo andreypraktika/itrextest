@@ -7,20 +7,18 @@ import Search from "./components/Search";
 import { connect } from "react-redux";
 import "./App.css";
 import "./loader.css";
-import { setData, setLoading } from "./Redux/redux-reducers";
+import { setData, setLoading, setCurrentPage } from "./Redux/redux-reducers";
 import Select from "./components/Select";
-import _ from 'lodash';
 
 const App = (props) => {
-  const { data, loading, searchWord, selectValue, tableSort } = props;
-  const [currentPage, setCurrentPage] = useState(1);
+  const { data, loading, searchWord, selectValue, currentPage } = props;
   const [postsPerPage] = useState(20);
 
   useEffect(() => {
     const fetchPosts = async () => {
       props.setLoading(true);
       const res = await axios.get(
-        "http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&adress={addressObject}&description={lorem|32}"
+        "https://itrex-react-lab-files.s3.eu-central-1.amazonaws.com/react-test-api.json"
       );
       props.setData(res.data);
       props.setLoading(false);
@@ -32,20 +30,18 @@ const App = (props) => {
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
 
-  const paginate = pageNumber => setCurrentPage(pageNumber);
+  const paginate = pageNumber => props.setCurrentPage(pageNumber);
   function prepareData(){
-    console.log(data);
     let result = data;
     if (searchWord){
-      result = result.filter(post => post.firstName.toLowerCase().includes(searchWord));
+      props.setCurrentPage(1);
+      result = result.filter(post => post.firstName.toLowerCase().includes(searchWord) || post.lastName.toLowerCase().includes(searchWord));
     }
     if (selectValue){
+      props.setCurrentPage(1);
       result = selectValue !== 'none' && result.filter(post => post.adress.state === selectValue);
     }
-    if (tableSort){
-      result = _.orderBy(result, [tableSort],['asc']);
-    };
-    return result.slice(indexOfFirstPost, indexOfLastPost);
+    return result;
   }
   console.log(prepareData());
 
@@ -56,10 +52,10 @@ const App = (props) => {
          <Search />
          <Select />
       </div>
-      <Posts posts={prepareData()} />
+      <Posts posts={prepareData().slice(indexOfFirstPost, indexOfLastPost)} />
       <Pagination
         postsPerPage={postsPerPage}
-        totalPosts={data.length}
+        totalPosts={prepareData().length}
         paginate={paginate}
       />
       <InfoPanel />
@@ -72,7 +68,7 @@ const mapStateToProps = (state) => ({
   loading: state.loading,
   searchWord: state.searchWord,
   selectValue: state.selectValue,
-  tableSort: state.tableSort,
+  currentPage: state.currentPage,
 });
 
-export default connect(mapStateToProps, { setData, setLoading })(App);
+export default connect(mapStateToProps, { setData, setLoading, setCurrentPage })(App);

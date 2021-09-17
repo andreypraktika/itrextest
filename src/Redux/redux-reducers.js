@@ -3,10 +3,10 @@ import actionTypes from './types';
 const initialState = {
   data: [],
   loading: false,
-  active: {},
+  active: null,
   selectValue: null,
   searchWord: '',
-  tableSort: '',
+  currentPage: 1,
 };
 
 export const preproccessReducer = (state = initialState, action) => {
@@ -41,10 +41,10 @@ export const preproccessReducer = (state = initialState, action) => {
         selectValue: action.payload,
       }
     }
-    case actionTypes.SET_TABLE_SORT: {
+    case actionTypes.SET_CURRENT_PAGE: {
       return {
         ...state,
-        tableSort: action.payload,
+        currentPage: action.payload,
       }
     }
     
@@ -59,4 +59,4 @@ export const setLoading = value => ({ type: actionTypes.SET_LOADING, payload: va
 export const setActive = value => ({ type: actionTypes.SET_ACTIVE, payload: value });
 export const setSearchWord = value => ({ type: actionTypes.SET_SEARCH_WORD, payload: value });
 export const setSelectValue = value => ({ type: actionTypes.SET_SELECT_VALUE, payload: value });
-export const setTableSort = value => ({ type: actionTypes.SET_TABLE_SORT, payload: value });
+export const setCurrentPage = value => ({ type: actionTypes.SET_CURRENT_PAGE, payload: value });

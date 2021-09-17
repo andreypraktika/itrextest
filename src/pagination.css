@@ -6,9 +6,19 @@ ul.pagination {
 
 ul.pagination li {display: inline;}
 
-ul.pagination li a {
+.page-link {
     color: black;
     float: left;
     padding: 8px 16px;
+    margin-bottom: 2rem;
     text-decoration: none;
+}
+a {
+   margin-right: 5px;
+}
+
+#active {
+    background-color: red;
+    color: white;
+    border: none;
 }

@@ -1,17 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "../App.css";
 import { connect } from "react-redux";
 
 function InfoPanel(props){
+    useEffect(() => {active && window.scroll(0, 4000);})
     const { active } = props;
     return (
-        active && (<div class="info">
-            {active && (<><p>Profile Info</p><ul>
-                <p>Selected Profile: {active.firstName}</p>
-                <p>Description: {active.description}</p>
-                {/* <p>State: {active.adress.state}</p>
-                <p>Index: {active.adress.index}</p> */}
-            </ul></>)}
+        active && (
+        <div class="info">
+            {active && ( 
+            <>
+            <ul>
+               <p><b>Profile Info</b></p>
+               <p>Selected Profile: {active.firstName} {active.lastName}</p>
+               <p>Description: {active.description}</p> 
+               <p>Address: {active.adress.streetAddress}</p> 
+               <p>City: {active.adress.city}</p> 
+               <p>State: {active.adress.state}</p> 
+               <p>Index: {active.adress.zip}</p> 
+            </ul>
+            </>)}
         </div>)
     )
 }
